@@ -1,35 +1,31 @@
 from tkinter import Tk, Entry, Frame, FLAT
 from tkinter.ttk import Button, Style
 
-# Tk, Entry, Frame (tkinter)
-# Style, Buttons (tkinter.ttk)
-
-
 # Root window
 root = Tk()
 root.resizable(False, False)
-root.title('Pycalc')
-root.config(background='orange')
+root.title("Python Calculator")
+root.config(bg="orangered")
 
 # Screen for display
-screen = Entry(root, justify='center', width=25)
+screen = Entry(root, justify='center', width=15, font=('Helvetica', 30))
 screen.pack(padx=8, pady=8)
 
-# Frame for creating buttons
+# Frame for buttons
 btnFrame = Frame(root)
 btnFrame.pack()
-btnFrame.config(background='orange')
+btnFrame.config(background='orangered')
 
-# Style for buttons
+# Style for the buttons
 
 style = Style()
 style.configure(
     'TButton',
-    font=('Helvetica', 15, 'bold'),
+    font=('Helvetica', 30, 'bold'),
     height=60,
     width=4,
     relief=FLAT,
-    background='orange'
+    background='orangered'
 )
 
 
@@ -40,25 +36,23 @@ style.configure(
 cButton = Button(btnFrame, text='C', style='TButton')
 cButton.grid(column=0, row=0, padx=8, pady=8)
 
+equalButton = Button(btnFrame, text='=', style='TButton')
+equalButton.grid(column=1, row=0, padx=8, pady=8)
 
-equalsButton = Button(btnFrame, text='=', style='TButton')
-equalsButton.grid(column=1, row=0, padx=8, pady=8)
-
-divideButton = Button(btnFrame, text='÷', style='TButton')
+divideButton = Button(btnFrame, text='\u00f7', style='TButton')
 divideButton.grid(column=2, row=0, padx=8, pady=8)
 
 
-# Row 1 
+# Row 1
 
 plusButton = Button(btnFrame, text='+', style='TButton')
 plusButton.grid(column=0, row=1, padx=8, pady=8)
 
-minusButton = Button(btnFrame, text='—', style='TButton')
+minusButton = Button(btnFrame, text='\u2212', style='TButton')
 minusButton.grid(column=1, row=1, padx=8, pady=8)
 
-multiplyButton = Button(btnFrame, text='×', style='TButton')
+multiplyButton = Button(btnFrame, text='\u00d7', style='TButton')
 multiplyButton.grid(column=2, row=1, padx=8, pady=8)
-
 
 # Row 2
 
@@ -68,9 +62,8 @@ zeroButton.grid(column=0, row=2, padx=8, pady=8)
 doubleZeroButton = Button(btnFrame, text='00', style='TButton')
 doubleZeroButton.grid(column=1, row=2, padx=8, pady=8)
 
-dotButton = Button(btnFrame, text='·', style='TButton')
+dotButton = Button(btnFrame, text='\u00b7', style='TButton')
 dotButton.grid(column=2, row=2, padx=8, pady=8)
-
 
 # Row 3
 
@@ -108,6 +101,5 @@ threeButton = Button(btnFrame, text='3', style='TButton')
 threeButton.grid(column=2, row=5, padx=8, pady=8)
 
 
-
-# mainloop
+# Mainloop
 root.mainloop()
