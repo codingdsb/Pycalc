@@ -1,4 +1,4 @@
-from tkinter import Tk, Entry, Frame, FLAT
+from tkinter import Tk, Entry, Frame, FLAT, messagebox
 from tkinter.ttk import Button, Style
 
 # Root window
@@ -7,39 +7,34 @@ root.resizable(False, False)
 root.title("Python Calculator")
 root.config(bg="orangered")
 
-
 # functions
-
-
 
 def clearEverything():
     screen.delete(0, 'end')
 
-    
 def appendToExpression(e):
     text = e.widget.cget('text')
-
-    if text == '\u2212':
-        screen.insert('end', '-')
-
-    elif text == '\u00d7':
-        screen.insert('end', '*')
-
-    elif text == '\u00f7':
-        screen.insert('end', '/')
-
-    elif text == '\u00b7':
-        screen.insert('end', '.')
-
-    else:
-        screen.insert('end', text)
+    screen.insert('end', text)
 
 def calculate():
-    result = eval(screen.get())
-    clearEverything()
-    screen.insert(0, result)
+    expression = screen.get()
 
+    for i in range(len(expression)):
+        if expression[i] == '\u2212':
+            expression = expression.replace('\u2212', '-')
+        elif expression[i] == '\u00d7':
+            expression = expression.replace('\u00d7', '*')
+        elif expression[i] == '\u00f7':
+            expression = expression.replace('\u00f7', '/')
+        elif expression[i] == '\u00b7':
+            expression = expression.replace('\u00b7', '.')
+    try:
+        result = eval(expression)
+        clearEverything()
+        screen.insert(0, result)
 
+    except Exception as e:
+        messagebox.showerror(title='Some Error Occured', message='You entered some invalid characters')
 
 # Screen for display
 screen = Entry(root, justify='center', width=15, font=('Helvetica', 30))
@@ -120,7 +115,6 @@ nineButton = Button(btnFrame, text='9', style='TButton')
 nineButton.grid(column=2, row=3, padx=8, pady=8)
 nineButton.bind('<Button-1>', appendToExpression)
 
-
 # Row 4
 
 fourButton = Button(btnFrame, text='4', style='TButton')
@@ -134,7 +128,6 @@ fiveButton.bind('<Button-1>', appendToExpression)
 sixButton = Button(btnFrame, text='6', style='TButton')
 sixButton.grid(column=2, row=4, padx=8, pady=8)
 sixButton.bind('<Button-1>', appendToExpression)
-
 
 # Row 5
 
