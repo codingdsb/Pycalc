@@ -34,7 +34,8 @@ def calculate():
         screen.insert(0, result)
 
     except Exception as e:
-        messagebox.showerror(title='Some Error Occured', message='You entered some invalid characters')
+        root.bell()
+        messagebox.showwarning(title='Some Error Occured', message='You entered some invalid characters')
 
 # Screen for display
 screen = Entry(root, justify='center', width=15, font=('Helvetica', 30))
